@@ -1,9 +1,12 @@
 package io.github.thiagoss86.model.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Data
 public class Cliente {
 
     @Id
@@ -18,4 +21,5 @@ public class Cliente {
 
     @Column
     private LocalDate dataCadastro;
+
 }
