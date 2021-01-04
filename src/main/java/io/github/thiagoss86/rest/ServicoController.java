@@ -6,19 +6,16 @@ import io.github.thiagoss86.model.repository.ClienteRepository;
 import io.github.thiagoss86.model.repository.ServicoRepository;
 import io.github.thiagoss86.util.BigDecimalConverter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/servicos")
-@CrossOrigin("http://localhost:4200")
 @RequiredArgsConstructor
 public class ServicoController {
 
