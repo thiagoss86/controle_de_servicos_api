@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -26,11 +27,11 @@ public class ServicoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Servico salvar(@RequestBody ServicoDTO dto) {
+    public Servico salvar(@RequestBody @Valid ServicoDTO dto) {
         Servico servico = new Servico();
 
         servico.setDescricao(dto.getDescricao());
-        servico.setData(LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        servico.setData(LocalDate.parse(dto.getData(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         servico.setCliente(
                 clienteRepository.findById(dto.getIdCliente()).orElseThrow(
                         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado")));
