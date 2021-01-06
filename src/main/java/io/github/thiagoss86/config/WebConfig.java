@@ -14,7 +14,7 @@ import java.util.List;
 @Configuration
 public class WebConfig {
 
-    @Bean
+    /*@Bean
     public FilterRegistrationBean<CorsFilter> corsFilter() {
         List<String> all = Arrays.asList("*");
 
@@ -35,5 +35,5 @@ public class WebConfig {
 
         return filter;
 
-    }
+    }*/
 }

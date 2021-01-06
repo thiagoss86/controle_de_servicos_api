@@ -2,12 +2,14 @@ package io.github.thiagoss86.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Usuario {
 
     @Id
