@@ -1,5 +1,6 @@
 package io.github.thiagoss86.service;
 
+import io.github.thiagoss86.exceptions.UsuarioCadastradoException;
 import io.github.thiagoss86.model.entity.Usuario;
 import io.github.thiagoss86.model.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,11 @@ import org.springframework.stereotype.Service;
 public class UsuarioService  implements UserDetailsService {
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    UsuarioRepository repository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository
+        Usuario usuario = repository
                             .findByUsername(username)
                             .orElseThrow(() -> new UsernameNotFoundException("Login inexistente"));
 
@@ -26,5 +27,14 @@ public class UsuarioService  implements UserDetailsService {
                 .password(usuario.getPassword())
                 .roles("USER")
                 .build();
+    }
+
+    public Usuario salvar(Usuario usuario) {
+        boolean existe = repository.existsByUsername(usuario.getUsername());
+
+        if(existe)
+            new UsuarioCadastradoException(usuario.getUsername());
+
+        return repository.save(usuario);
     }
 }
